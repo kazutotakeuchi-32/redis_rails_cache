@@ -75,3 +75,29 @@ class ArticlesController < ApplicationController
       params.require(:article).permit(:title, :body)
     end
 end
+# ログ
+#1回目リクエスト　ActiveRecordへの問い合わせあり(0.3ms)
+# Started GET "/articles" for ::1 at 2021-08-29 15:45:38 +0900
+#    (0.1ms)  SELECT sqlite_version(*)
+# Processing by ArticlesController#index as HTML
+#   Article Load (0.3ms)  SELECT "articles".* FROM "articles"
+#   ↳ app/controllers/articles_controller.rb:69:in `block in cache_articles'
+#   Rendering articles/index.html.erb within layouts/application
+#   Rendered articles/index.html.erb within layouts/application (Duration: 2.8ms | Allocations: 709)
+# Completed 200 OK in 143ms (Views: 30.5ms | ActiveRecord: 0.3ms | Allocations: 7888)
+
+#２ActiveRecordの問い合わせ無し(0.0ms)
+# Started GET "/articles" for ::1 at 2021-08-29 15:45:44 +0900
+# Processing by ArticlesController#index as HTML
+#   Rendering articles/index.html.erb within layouts/application
+#   Rendered articles/index.html.erb within layouts/application (Duration: 2.7ms | Allocations: 650)
+# Completed 200 OK in 17ms (Views: 10.0ms | ActiveRecord: 0.0ms | Allocations: 2966)
+
+
+# ３ActiveRecordの問い合わせ無し(0.0ms)
+
+# Started GET "/articles" for ::1 at 2021-08-29 15:45:47 +0900
+# Processing by ArticlesController#index as HTML
+#   Rendering articles/index.html.erb within layouts/application
+#   Rendered articles/index.html.erb within layouts/application (Duration: 0.8ms | Allocations: 650)
+# Completed 200 OK in 7ms (Views: 3.2ms | ActiveRecord: 0.0ms | Allocations: 2969)
